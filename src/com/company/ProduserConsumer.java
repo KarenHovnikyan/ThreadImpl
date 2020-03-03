@@ -1,39 +1,28 @@
 package com.company;
 
-import java.util.ArrayList;
-
 class ProduserConsumer {
-    private static int count = 0;
-    private ArrayList<Integer> list = new ArrayList<>();
+    private static int balance = 0;
+    private static boolean isOdd;
 
-     void producer() throws InterruptedException {
-        while (true) synchronized (this) {
-            while (list.size() == 10) {
-                wait();
+    void producer() throws InterruptedException {
+
+        while (true) {
+            if (!isOdd && balance == 0) {
+                balance += 10;
+                System.out.println(balance);
             }
-
-            list.add(count);
-            System.out.println("producer" + " " + list.get(count));
-            count++;
-
-            notify();
-            Thread.sleep(500);
+            isOdd = true;
         }
     }
 
     void consumer() throws InterruptedException {
-        while (true) { synchronized (this) {
-                if (list.size() == 0) {
-                    wait();
-                }
-                count--;
-                System.out.println("costumer" + " " + list.get(count));
-                list.remove(count);
-
-                notify();
-                Thread.sleep(500);
+        while (true) {
+            if (isOdd && balance == 10) {
+                balance -= 10;
+                System.out.println(balance);
             }
-
+            isOdd = false;
         }
     }
 }
+

@@ -1,11 +1,10 @@
 package com.company;
 
-
-public class Main  {
+public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        final ProduserConsumer pc = new ProduserConsumer();
-        Thread t1 = new Thread(new Runnable()  {
+        ProduserConsumer pc = new ProduserConsumer();
+        Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -27,8 +26,6 @@ public class Main  {
         });
         t1.start();
         t2.start();
-
-        t1.join();
-        t2.join();
     }
 }
+
