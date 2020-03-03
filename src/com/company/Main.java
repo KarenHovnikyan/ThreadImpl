@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         ProduserConsumer pc = new ProduserConsumer();
-
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
