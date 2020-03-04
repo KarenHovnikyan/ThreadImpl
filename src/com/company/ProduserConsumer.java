@@ -2,8 +2,8 @@
 package com.company;
 
 class ProduserConsumer {
-    private static int balance = 0;
-    private static boolean isvalid;
+    private static volatile int balance = 0;
+    private static volatile boolean isvalid;
 
     void producer() throws InterruptedException {
         while(true) {
